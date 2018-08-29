@@ -11,7 +11,6 @@ api = Api(app)
 def toggle_light_color(light, interval=1, num_cycles=10):
     original_color = light.get_color()
     rapid = True if interval < 1 else False
-    device.set_power("on", rapid)
     for i in range(num_cycles):
         light.set_color(BLUE, rapid=rapid)
         sleep(interval)
@@ -45,6 +44,7 @@ class User(Resource):
                 lifx = LifxLAN()
                 devices = lifx.get_lights()
                 bulb = devices[0]
+                bulb.set_power("on")
                 toggle_light_color(bulb, 0.2)
                 return user, 200
         return "User not found", 404

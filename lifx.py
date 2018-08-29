@@ -1,8 +1,23 @@
 from flask import Flask
 from flask_restful import Api, Resource, reqparse
 
+import sys
+from time import sleep
+from lifxlan import LifxLAN
+
 app = Flask(__name__)
 api = Api(app)
+
+def toggle_light_color(light, interval=0.5, num_cycles=3):
+    original_color = light.get_color()
+    rapid = True if interval < 1 else False
+    for i in range(num_cycles):
+        light.set_color(BLUE, rapid=rapid)
+        sleep(interval)
+        light.set_color(GREEN, rapid=rapid)
+        sleep(interval)
+    light.set_color(original_color)
+
 
 users = [
     {
@@ -26,6 +41,9 @@ class User(Resource):
     def get(self, name):
         for user in users:
             if(name == user["name"]):
+                devices = lifx.get_lights()
+                bulb = devices[0]
+                toggle_light_color(bulb, 0.2)
                 return user, 200
         return "User not found", 404
 

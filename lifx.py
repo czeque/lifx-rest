@@ -8,9 +8,10 @@ from lifxlan import LifxLAN, BLUE, GREEN
 app = Flask(__name__)
 api = Api(app)
 
-def toggle_light_color(light, interval=0.5, num_cycles=3):
+def toggle_light_color(light, interval=1, num_cycles=10):
     original_color = light.get_color()
     rapid = True if interval < 1 else False
+    device.set_power("on", rapid)
     for i in range(num_cycles):
         light.set_color(BLUE, rapid=rapid)
         sleep(interval)

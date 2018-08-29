@@ -3,7 +3,7 @@ from flask_restful import Api, Resource, reqparse
 
 import sys
 from time import sleep
-from lifxlan import LifxLAN
+from lifxlan import LifxLAN, BLUE, GREEN
 
 app = Flask(__name__)
 api = Api(app)

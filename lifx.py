@@ -41,6 +41,7 @@ class User(Resource):
     def get(self, name):
         for user in users:
             if(name == user["name"]):
+                lifx = LifxLAN()
                 devices = lifx.get_lights()
                 bulb = devices[0]
                 toggle_light_color(bulb, 0.2)

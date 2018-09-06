@@ -19,14 +19,14 @@ def toggle_light_color(light, interval=1, num_cycles=10):
     light.set_color(original_color)
 
 
-users = [
+scene = [
     {
-        "name": "Nicholas",
+        "name": "den-on",
         "age": 42,
         "occupation": "Network Engineer"
     },
     {
-        "name": "Elvin",
+        "name": "den-off",
         "age": 32,
         "occupation": "Doctor"
     },
@@ -37,61 +37,18 @@ users = [
     }
 ]
 
-class User(Resource):
+class Scene(Resource):
     def get(self, name):
-        for user in users:
+        for scene in scenes:
             if(name == user["name"]):
                 lifx = LifxLAN()
                 devices = lifx.get_lights()
                 bulb = devices[0]
                 bulb.set_power("on")
                 toggle_light_color(bulb, 0.2)
-                return user, 200
-        return "User not found", 404
-
-    def post(self, name):
-        parser = reqparse.RequestParser()
-        parser.add_argument("age")
-        parser.add_argument("occupation")
-        args = parser.parse_args()
-
-        for user in users:
-            if(name == user["name"]):
-                return "User with name {} already exists".format(name), 400
-
-        user = {
-            "name": name,
-            "age": args["age"],
-            "occupation": args["occupation"]
-        }
-        users.append(user)
-        return user, 201
-
-    def put(self, name):
-        parser = reqparse.RequestParser()
-        parser.add_argument("age")
-        parser.add_argument("occupation")
-        args = parser.parse_args()
-
-        for user in users:
-            if(name == user["name"]):
-                user["age"] = args["age"]
-                user["occupation"] = args["occupation"]
-                return user, 200
-        
-        user = {
-            "name": name,
-            "age": args["age"],
-            "occupation": args["occupation"]
-        }
-        users.append(user)
-        return user, 201
-
-    def delete(self, name):
-        global users
-        users = [user for user in users if user["name"] != name]
-        return "{} is deleted.".format(name), 200
+                return scene, 200
+        return "Scene not found", 404
       
-api.add_resource(User, "/user/<string:name>")
+api.add_resource(Scene, "/scene/<string:name>")
 
 app.run(debug=True)

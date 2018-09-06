@@ -19,7 +19,7 @@ def toggle_light_color(light, interval=1, num_cycles=10):
     light.set_color(original_color)
 
 
-scene = [
+scenes = [
     {
         "name": "den-on",
         "age": 42,
@@ -40,7 +40,7 @@ scene = [
 class Scene(Resource):
     def get(self, name):
         for scene in scenes:
-            if(name == user["name"]):
+            if(name == scene["name"]):
                 lifx = LifxLAN()
                 devices = lifx.get_lights()
                 bulb = devices[0]

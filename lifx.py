@@ -46,7 +46,7 @@ class Scene(Resource):
                 bulb = devices[0]
                 bulb.set_power("on")
                 toggle_light_color(bulb, 0.2)
-                return scene["name"], 200
+                return scene["name"] + " activated", 200
         return "Scene not found", 404
       
 api.add_resource(Scene, "/scene/<string:name>")

@@ -37,18 +37,27 @@ scenes = [
     }
 ]
 
+
+#class Scene(Resource):
+#    def get(self, name):
+#        for scene in scenes:
+#            if(name == scene["name"]):
+#                lifx = LifxLAN()
+#                devices = lifx.get_lights()
+#                bulb = devices[0]
+#                bulb.set_power("on")
+#                toggle_light_color(bulb, 0.2)
+#                return scene["name"] + " activated", 200
+#        return "Scene not found", 404
+
 class Scene(Resource):
     def get(self, name):
-        for scene in scenes:
-            if(name == scene["name"]):
-                lifx = LifxLAN()
-                devices = lifx.get_lights()
-                bulb = devices[0]
-                bulb.set_power("on")
-                toggle_light_color(bulb, 0.2)
-                return scene["name"] + " activated", 200
+            if(name == "den-on"):
+                light = Light("d0:73:d5:26:91:07", "10.10.1.152")
+                toggle_light_color(light, 0.2)
+                return "den-on activated", 200
         return "Scene not found", 404
-      
+
 api.add_resource(Scene, "/scene/<string:name>")
 
 app.run(debug=True)

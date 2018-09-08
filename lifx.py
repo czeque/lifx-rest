@@ -56,7 +56,7 @@ class Scene(Resource):
                 light = Light("d0:73:d5:26:91:07", "10.10.1.152")
                 toggle_light_color(light, 0.2)
                 return "den-on activated", 200
-        return "Scene not found", 404
+            return "Scene not found", 404
 
 api.add_resource(Scene, "/scene/<string:name>")
 

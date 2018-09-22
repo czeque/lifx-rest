@@ -58,6 +58,6 @@ class Scene(Resource):
                 return "den-on activated", 200
             return "Scene not found", 404
 
-api.add_resource(Scene, "/scene/<string:name>")
+# api.add_resource(Scene, "/scene/<string:name>")
 
 app.run(debug=True)

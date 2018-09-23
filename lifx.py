@@ -60,4 +60,4 @@ class Scene(Resource):
 
 # api.add_resource(Scene, "/scene/<string:name>")
 
-app.run(debug=True)
+app.run(host='0.0.0.0',debug=True)

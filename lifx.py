@@ -22,18 +22,12 @@ def toggle_light_color(light, interval=1, num_cycles=10):
 scenes = [
     {
         "name": "den-on",
-        "age": 42,
-        "occupation": "Network Engineer"
     },
     {
         "name": "den-off",
-        "age": 32,
-        "occupation": "Doctor"
     },
     {
-        "name": "Jass",
-        "age": 22,
-        "occupation": "Web Developer"
+        "name": "test",
     }
 ]
 
@@ -52,10 +46,10 @@ scenes = [
 
 class Scene(Resource):
     def get(self, name):
-            if(name == "den-on"):
+            if(name == "test"):
                 light = Light("d0:73:d5:26:91:07", "10.10.1.146")
                 toggle_light_color(light, 0.2)
-                return "den-on activated", 200
+                return "test activated", 200
             return "Scene not found", 404
 
 # api.add_resource(Scene, "/scene/<string:name>")

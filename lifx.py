@@ -53,7 +53,7 @@ scenes = [
 class Scene(Resource):
     def get(self, name):
             if(name == "den-on"):
-                light = Light("d0:73:d5:26:91:07", "10.10.1.152")
+                light = Light("d0:73:d5:26:91:07")
                 toggle_light_color(light, 0.2)
                 return "den-on activated", 200
             return "Scene not found", 404

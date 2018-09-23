@@ -21,13 +21,13 @@ def toggle_light_color(light, interval=1, num_cycles=10):
 
 scenes = [
     {
-        "name": "den-on",
+        "name": "den-on"
     },
     {
-        "name": "den-off",
+        "name": "den-off"
     },
     {
-        "name": "test",
+        "name": "test"
     }
 ]
 
